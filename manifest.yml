@@ -3,9 +3,12 @@ applications:
   memory: 2g
   health-check-type: http
   health-check-http-endpoint: /
+  command: |
+    wget https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-5.7.0.15470.jar -O /opt/sonarqube/extensions/plugins/sonar-java-plugin-5.7.0.15470.jar && \
+    ./bin/run.sh 
   docker:
     image: sonarqube
   env:
     SONARQUBE_JDBC_USERNAME: ((username))
     SONARQUBE_JDBC_PASSWORD: ((password))
-    SONARQUBE_JDBC_URL: jdbc:mysql://((hostname)):((port))/((name))?useUnicode=true&characterEncoding=utf8&useSSL=false
+    SONARQUBE_JDBC_URL: jdbc:mysql://((hostname)):((port))/((name))?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false
