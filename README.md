@@ -27,6 +27,18 @@ EOF
 cf push --random-route --vars-file credentials.yml
 ```
 
+it assumes that `credentials.yml` should be created via the command above. If you don't have the service broker, you can create `manifest.yml` that has following values:
+
+```yaml
+---
+hostname: 192.168.12.161
+name: foo_db
+password: password
+port: 3306
+username: user
+```
+
+
 ## Installing plugins
 
 Installing plugins via Marketplace doesn't work well since download files exist in the ephemeral disk and will disapper when the container is restarted.
