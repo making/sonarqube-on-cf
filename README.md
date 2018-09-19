@@ -55,7 +55,7 @@ applications:
   health-check-type: http
   health-check-http-endpoint: /
   command: |
-    wget https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-5.7.0.15470.jar -O /opt/sonarqube/extensions/plugins/sonar-java-plugin-5.7.0.15470.jar && \
+    wget -q -P /opt/sonarqube/extensions/plugins/ https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-5.7.0.15470.jar && \
     ./bin/run.sh 
   docker:
     image: sonarqube
