@@ -27,7 +27,7 @@ EOF
 cf push --random-route --vars-file credentials.yml
 ```
 
-it assumes that `credentials.yml` should be created via the command above. If you don't have the service broker, you can create `manifest.yml` that has following values:
+it assumes that `credentials.yml` should be created via the command above. If you don't have the service broker, you can create `credentials.yml` by yourself that has following values:
 
 ```yaml
 ---
