@@ -1,0 +1,11 @@
+applications:
+- name: sonar
+  memory: 2g
+  health-check-type: http
+  health-check-http-endpoint: /
+  docker:
+    image: sonarqube
+  env:
+    SONARQUBE_JDBC_USERNAME: ((username))
+    SONARQUBE_JDBC_PASSWORD: ((password))
+    SONARQUBE_JDBC_URL: jdbc:mysql://((hostname)):((port))/((name))?useUnicode=true&characterEncoding=utf8&useSSL=false
