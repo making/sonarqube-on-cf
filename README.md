@@ -15,7 +15,7 @@ applications:
   health-check-type: http
   health-check-http-endpoint: /
   docker:
-    image: sonarqube
+    image: sonarqube:7.1
   env:
     SONARQUBE_JDBC_USERNAME: ((username))
     SONARQUBE_JDBC_PASSWORD: ((password))
@@ -58,7 +58,7 @@ applications:
     wget -q -P /opt/sonarqube/extensions/plugins/ https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-5.7.0.15470.jar && \
     ./bin/run.sh 
   docker:
-    image: sonarqube
+    image: sonarqube:7.1
   env:
     SONARQUBE_JDBC_USERNAME: ((username))
     SONARQUBE_JDBC_PASSWORD: ((password))

@@ -8,7 +8,7 @@ applications:
     wget -q -P /opt/sonarqube/extensions/plugins/ https://sonarsource.bintray.com/Distribution/sonar-auth-github-plugin/sonar-auth-github-plugin-1.3.jar && \
     ./bin/run.sh 
   docker:
-    image: sonarqube
+    image: sonarqube:7.1
   env:
     SONARQUBE_JDBC_USERNAME: ((username))
     SONARQUBE_JDBC_PASSWORD: ((password))
