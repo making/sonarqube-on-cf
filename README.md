@@ -14,11 +14,6 @@ applications:
   memory: 2g
   health-check-type: http
   health-check-http-endpoint: /
-  command: |
-    rm -f /opt/sonarqube/extensions/plugins/sonar-java-plugin* && \
-    wget -q -P /opt/sonarqube/extensions/plugins/ https://binaries.sonarsource.com/Distribution/sonar-java-plugin/sonar-java-plugin-5.9.2.16552.jar && \
-    wget -q -P /opt/sonarqube/extensions/plugins/ https://binaries.sonarsource.com/Distribution/sonar-auth-github-plugin/sonar-auth-github-plugin-1.4.0.695.jar && \
-    ./bin/run.sh 
   docker:
     image: sonarqube:7.4-community
   env:
@@ -50,7 +45,7 @@ Installing plugins via Marketplace doesn't work well since download files exist 
 You can use [Manual Installation](https://docs.sonarqube.org/display/SONAR/Installing+a+Plugin#InstallingaPlugin-ManualInstallation).
 You need to have plugins before sonar starts and place them into `/opt/sonarqube/extensions/plugins`.
 
-Here is an example to install [SonarJava](https://docs.sonarqube.org/display/PLUG/SonarJava).
+Here is an example to install [GitHub Authentication Plugin](https://docs.sonarqube.org/display/PLUG/GitHub+Authentication+Plugin).
 
 ```yaml
 cat <<EOF > manifest.yml
@@ -60,10 +55,10 @@ applications:
   health-check-type: http
   health-check-http-endpoint: /
   command: |
-    wget -q -P /opt/sonarqube/extensions/plugins/ https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-5.7.0.15470.jar && \
+    wget -q -P /opt/sonarqube/extensions/plugins/ https://binaries.sonarsource.com/Distribution/sonar-auth-github-plugin/sonar-auth-github-plugin-1.4.0.695.jar && \
     ./bin/run.sh 
   docker:
-    image: sonarqube:7.1
+    image: sonarqube:7.4-community
   env:
     SONARQUBE_JDBC_USERNAME: ((username))
     SONARQUBE_JDBC_PASSWORD: ((password))
