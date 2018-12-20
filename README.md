@@ -8,14 +8,19 @@ cf service-key sonar-db sonar | awk 'NR>2 {print}' | ruby -ryaml -rjson -e 'puts
 ```
 
 ```yaml
-cat <<EOF > manifest.yml
+cat <<'EOF' > manifest.yml
 applications:
 - name: sonar
   memory: 2g
   health-check-type: http
   health-check-http-endpoint: /
+  command: |
+    rm -f /opt/sonarqube/extensions/plugins/sonar-java-plugin* && \
+    wget -q -P /opt/sonarqube/extensions/plugins/ https://binaries.sonarsource.com/Distribution/sonar-java-plugin/sonar-java-plugin-5.9.2.16552.jar && \
+    wget -q -P /opt/sonarqube/extensions/plugins/ https://binaries.sonarsource.com/Distribution/sonar-auth-github-plugin/sonar-auth-github-plugin-1.4.0.695.jar && \
+    ./bin/run.sh 
   docker:
-    image: sonarqube:7.1
+    image: sonarqube:7.4-community
   env:
     SONARQUBE_JDBC_USERNAME: ((username))
     SONARQUBE_JDBC_PASSWORD: ((password))
